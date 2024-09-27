@@ -1,0 +1,21 @@
+<h1 class="grow text-3xl md:text-4xl font-medium mb-8" i18n="@@registration.register.headline">Registration</h1>
+<form [formGroup]="registrationForm" (ngSubmit)="handleSubmit()">
+    <app-input-row [group]="registrationForm" field="email" i18n-label="@@registrationRequest.email.label" label="Email" />
+    <app-input-row [group]="registrationForm" field="password" rowType="password" i18n-label="@@registrationRequest.password.label" label="Password" />
+    <app-input-row [group]="registrationForm" field="firstName" i18n-label="@@registrationRequest.firstName.label" label="First Name" />
+    <app-input-row [group]="registrationForm" field="lastName" i18n-label="@@registrationRequest.lastName.label" label="Last Name" />
+    <app-input-row [group]="registrationForm" field="resetPasswordToken" i18n-label="@@registrationRequest.resetPasswordToken.label" label="Reset Password Token" />
+    <app-input-row [group]="registrationForm" field="resetPasswordTokenSentAt" i18n-label="@@registrationRequest.resetPasswordTokenSentAt.label" label="Reset Password Token Sent At" />
+    <app-input-row [group]="registrationForm" field="emailConfirmationToken" i18n-label="@@registrationRequest.emailConfirmationToken.label" label="Email Confirmation Token" />
+    <app-input-row [group]="registrationForm" field="emailConfirmationTokenSentAt" i18n-label="@@registrationRequest.emailConfirmationTokenSentAt.label" label="Email Confirmation Token Sent At" />
+    <app-input-row [group]="registrationForm" field="emailConfirmed" rowType="checkbox" i18n-label="@@registrationRequest.emailConfirmed.label" label="Email Confirmed" />
+    <app-input-row [group]="registrationForm" field="countryCode" i18n-label="@@registrationRequest.countryCode.label" label="Country Code" />
+    <app-input-row [group]="registrationForm" field="phone" i18n-label="@@registrationRequest.phone.label" label="Phone" />
+    <app-input-row [group]="registrationForm" field="phoneConfirmationToken" i18n-label="@@registrationRequest.phoneConfirmationToken.label" label="Phone Confirmation Token" />
+    <app-input-row [group]="registrationForm" field="phoneConfirmationTokenSentAt" i18n-label="@@registrationRequest.phoneConfirmationTokenSentAt.label" label="Phone Confirmation Token Sent At" />
+    <app-input-row [group]="registrationForm" field="phoneConfirmed" rowType="checkbox" i18n-label="@@registrationRequest.phoneConfirmed.label" label="Phone Confirmed" />
+    <app-input-row [group]="registrationForm" field="profileImageUrl" i18n-label="@@registrationRequest.profileImageUrl.label" label="Profile Image Url" />
+    <app-input-row [group]="registrationForm" field="isActive" rowType="checkbox" i18n-label="@@registrationRequest.isActive.label" label="Is Active" />
+    <app-input-row [group]="registrationForm" field="isLocked" rowType="checkbox" i18n-label="@@registrationRequest.isLocked.label" label="Is Locked" />
+    <input type="submit" i18n-value="@@registration.register.headline" value="Registration" class="inline-block text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-300  focus:ring-4 rounded px-5 py-2 mt-6" />
+</form>

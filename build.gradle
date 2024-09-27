@@ -1,0 +1,143 @@
+buildscript {
+    ext {
+        springBootVersion = '3.3.4'
+    }
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("com.github.node-gradle:gradle-node-plugin:7.0.2")
+    }
+}
+
+subprojects {
+    apply plugin: 'java-library'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'org.springframework.boot'
+
+    tasks.withType(Test) {
+        useJUnitPlatform()
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    configurations {
+        testArtifacts
+        developmentOnly
+        runtimeClasspath {
+            extendsFrom developmentOnly
+        }
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+        }
+    }
+
+    dependencies {
+        compileOnly('org.projectlombok:lombok')
+        annotationProcessor('org.projectlombok:lombok')
+        testCompileOnly('org.projectlombok:lombok')
+        testAnnotationProcessor('org.projectlombok:lombok')
+        implementation('org.mapstruct:mapstruct:1.6.2')
+        annotationProcessor('org.mapstruct:mapstruct-processor:1.6.2')
+        annotationProcessor('org.projectlombok:lombok-mapstruct-binding:0.2.0')
+        testImplementation('org.springframework.boot:spring-boot-starter-test')
+        testImplementation('io.rest-assured:rest-assured')
+        testImplementation('org.springframework.boot:spring-boot-testcontainers')
+        testImplementation('org.testcontainers:postgresql')
+    }
+
+    sourceCompatibility = '21'
+
+    ext {
+        projectName = "$rootProjectName-$project.name"
+    }
+
+    springBoot {
+        mainClass = 'com.cykor.hub.base.HubApplication'
+    }
+
+    bootRun {
+        enabled false
+    }
+
+    bootBuildImage {
+        enabled false
+    }
+
+    task testJar(type: Jar, dependsOn: testClasses) {
+        from sourceSets.test.output
+        archiveClassifier.set('tests')
+    }
+
+    artifacts {
+        testArtifacts testJar
+    }
+}
+
+project(':hub-web') {
+    apply plugin: 'com.github.node-gradle.node'
+
+    bootRun {
+        environment SPRING_PROFILES_ACTIVE: environment.SPRING_PROFILES_ACTIVE ?: 'local'
+        workingDir rootProject.projectDir
+        enabled true
+    }
+
+    bootBuildImage {
+        enabled true
+    }
+
+    node {
+        download.set(true)
+        version.set('20.17.0')
+        nodeProjectDir.set(file("${project.projectDir}/.."))
+    }
+
+    task npmRunBuild(type: NpmTask) {
+        args = ['run', 'build']
+        dependsOn npmInstall
+
+        inputs.files(fileTree('../node_modules'))
+        inputs.files(fileTree('../hub-base/src/main/webapp'))
+        inputs.files(fileTree('../hub-web/src/main/webapp'))
+        inputs.file('../angular.json')
+        inputs.file('../package.json')
+        inputs.file('../tailwind.config.js')
+        inputs.file('../tsconfig.json')
+        inputs.file('../tsconfig.app.json')
+        outputs.dir(layout.buildDirectory.dir('resources/main/static'))
+    }
+
+    processResources {
+        dependsOn npmRunBuild
+    }
+
+    dependencies {
+        api project(':hub-base')
+
+        testImplementation project(path: ':hub-base', configuration: 'testArtifacts')
+    }
+}
+
+project(':hub-base') {
+    dependencies {
+        api('org.springframework.boot:spring-boot-starter-web')
+        api('org.springframework.boot:spring-boot-starter-validation')
+        api('org.springframework.boot:spring-boot-starter-security')
+        api('com.auth0:java-jwt:4.4.0')
+        api('org.springframework.boot:spring-boot-starter-data-jpa')
+        runtimeOnly('org.postgresql:postgresql')
+        api('org.flywaydb:flyway-core')
+        api('org.flywaydb:flyway-database-postgresql')
+        api('io.github.wimdeblauwe:error-handling-spring-boot-starter:4.4.0')
+        api('org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0')
+        api('jakarta.mail:jakarta.mail-api')
+    }
+}

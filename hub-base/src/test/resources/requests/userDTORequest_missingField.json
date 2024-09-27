@@ -1,0 +1,18 @@
+{
+  "password" : "No sea takimata.",
+  "firstName" : "No sea takimata.",
+  "lastName" : "Duis autem vel.",
+  "resetPasswordToken" : "Sed ut perspiciatis.",
+  "resetPasswordTokenSentAt" : "2023-09-17T14:30:00+01:00",
+  "emailConfirmationToken" : "Nec ullamcorper.",
+  "emailConfirmationTokenSentAt" : "2023-09-17T14:30:00+01:00",
+  "emailConfirmed" : false,
+  "countryCode" : "Et ea rebu",
+  "phone" : "Quis nostrud exerci.",
+  "phoneConfirmationToken" : "Lorem ipsum dolor.",
+  "phoneConfirmationTokenSentAt" : "2023-09-17T14:30:00+01:00",
+  "phoneConfirmed" : false,
+  "profileImageUrl" : "No sea takimata.",
+  "isActive" : false,
+  "isLocked" : false
+}
