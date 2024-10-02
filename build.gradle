@@ -136,8 +136,10 @@ project(':hub-base') {
         runtimeOnly('org.postgresql:postgresql')
         api('org.flywaydb:flyway-core')
         api('org.flywaydb:flyway-database-postgresql')
+        api('org.springframework.boot:spring-boot-starter-actuator')
         api('io.github.wimdeblauwe:error-handling-spring-boot-starter:4.4.0')
         api('org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0')
         api('jakarta.mail:jakarta.mail-api')
+        api('org.springframework.boot:spring-boot-starter-mail')
     }
 }

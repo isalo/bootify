@@ -28,6 +28,14 @@ error:
       org.springframework.security.authorization.AuthorizationDeniedException: unauthorized
     codes:
       UserEmailUnique: USER_EMAIL_UNIQUE
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
 springdoc:
   pathsToMatch: /api/**, /authenticate, /register
 jwt:
