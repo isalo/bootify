@@ -2,6 +2,7 @@ package com.cykor.hub.base.rest;
 
 import com.cykor.hub.base.model.AuthenticationRequest;
 import com.cykor.hub.base.model.AuthenticationResponse;
+import com.cykor.hub.base.model.JwtUserDetails;
 import com.cykor.hub.base.service.JwtTokenService;
 import com.cykor.hub.base.service.JwtUserDetailsService;
 import jakarta.validation.Valid;
@@ -9,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,7 +41,7 @@ public class AuthenticationResource {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }
 
-        final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(authenticationRequest.getEmail());
+        final JwtUserDetails userDetails = jwtUserDetailsService.loadUserByUsername(authenticationRequest.getEmail());
         final AuthenticationResponse authenticationResponse = new AuthenticationResponse();
         authenticationResponse.setAccessToken(jwtTokenService.generateToken(userDetails));
         return authenticationResponse;

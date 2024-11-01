@@ -76,8 +76,7 @@ export class AuthenticationService {
       return false;
     }
     // check token not expired
-    const tokenData = this.getTokenData();
-    return Math.floor((new Date()).getTime() / 1000) < tokenData.exp;
+    return this.getCurrentSeconds() < this.getTokenData().exp;
   }
 
   hasAnyRole(requiredRoles: string[]) {
@@ -92,6 +91,10 @@ export class AuthenticationService {
   getTokenData() {
     const token = this.getToken()!!;
     return JSON.parse(atob(token.split('.')[1]));
+  }
+
+  getCurrentSeconds() {
+    return Math.floor((new Date()).getTime() / 1000);
   }
 
   logout() {

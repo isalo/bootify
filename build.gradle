@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '3.3.4'
+        springBootVersion = '3.3.5'
     }
     repositories {
         mavenCentral()
@@ -8,7 +8,7 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath("com.github.node-gradle:gradle-node-plugin:7.0.2")
+        classpath("com.github.node-gradle:gradle-node-plugin:7.1.0")
     }
 }
 
@@ -96,7 +96,7 @@ project(':hub-web') {
 
     node {
         download.set(true)
-        version.set('20.17.0')
+        version.set('20.18.0')
         nodeProjectDir.set(file("${project.projectDir}/.."))
     }
 
@@ -137,7 +137,7 @@ project(':hub-base') {
         api('org.flywaydb:flyway-core')
         api('org.flywaydb:flyway-database-postgresql')
         api('org.springframework.boot:spring-boot-starter-actuator')
-        api('io.github.wimdeblauwe:error-handling-spring-boot-starter:4.4.0')
+        api('io.github.wimdeblauwe:error-handling-spring-boot-starter:4.5.0')
         api('org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0')
         api('jakarta.mail:jakarta.mail-api')
         api('org.springframework.boot:spring-boot-starter-mail')
