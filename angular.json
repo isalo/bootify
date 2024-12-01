@@ -15,11 +15,14 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser-esbuild",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "./hub-web/build/resources/main/static",
+            "outputPath": {
+              "base": "./hub-web/build/resources/main/static",
+              "browser": ""
+            },
             "index": "hub-web/src/main/webapp/index.html",
-            "main": "hub-web/src/main/webapp/main.ts",
+            "browser": "hub-web/src/main/webapp/main.ts",
             "polyfills": [
               "@angular/localize/init",
               "zone.js"
@@ -34,6 +37,11 @@
             "styles": [
               "hub-web/src/main/webapp/styles.css"
             ],
+            "stylePreprocessorOptions": {
+              "sass": {
+                "silenceDeprecations": ["import"]
+              }
+            },
             "scripts": []
           },
           "configurations": {

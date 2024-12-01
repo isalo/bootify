@@ -15,7 +15,7 @@ public class AuthenticationRequest {
     private String email;
 
     @NotNull
-    @Size(max = 255)
+    @Size(max = 72)
     private String password;
 
 }

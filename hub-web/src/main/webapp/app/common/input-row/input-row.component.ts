@@ -6,7 +6,6 @@ import { InputErrorsComponent } from 'app/common/input-row/input-errors.componen
 
 @Component({
   selector: 'app-input-row',
-  standalone: true,
   templateUrl: './input-row.component.html',
   imports: [ReactiveFormsModule, InputErrorsComponent, KeyValuePipe]
 })

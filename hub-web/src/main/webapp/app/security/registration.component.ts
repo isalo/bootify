@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
 import { InputRowComponent } from 'app/common/input-row/input-row.component';
 import { AuthenticationService } from 'app/security/authentication.service';
@@ -11,8 +11,7 @@ import { validOffsetDateTime } from 'app/common/utils';
 
 @Component({
   selector: 'app-registration',
-  standalone: true,
-  imports: [CommonModule, RouterLink, ReactiveFormsModule, InputRowComponent],
+  imports: [CommonModule, ReactiveFormsModule, InputRowComponent],
   templateUrl: './registration.component.html'
 })
 export class RegistrationComponent {
@@ -23,7 +22,7 @@ export class RegistrationComponent {
 
   registrationForm = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.maxLength(255)]),
-    password: new FormControl(null, [Validators.required, Validators.maxLength(255)]),
+    password: new FormControl(null, [Validators.required, Validators.maxLength(72)]),
     firstName: new FormControl(null, [Validators.maxLength(255)]),
     lastName: new FormControl(null, [Validators.maxLength(255)]),
     resetPasswordToken: new FormControl(null, [Validators.maxLength(255)]),

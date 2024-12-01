@@ -6,7 +6,6 @@ import { getReasonPhrase } from 'http-status-codes';
 
 @Component({
   selector: 'app-error',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './error.component.html'
 })

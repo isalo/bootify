@@ -15,7 +15,7 @@ Lombok must be supported by your IDE. For IntelliJ install the Lombok plugin and
 [learn more](https://bootify.io/next-steps/spring-boot-with-lombok.html).
 
 In addition to the Spring Boot application, the development server must also be started - for this
-[Node.js](https://nodejs.org/) version 20 is required. Angular CLI and required dependencies must be installed once:
+[Node.js](https://nodejs.org/) version 22 is required. Angular CLI and required dependencies must be installed once:
 
 ```
 npm install -g @angular/cli

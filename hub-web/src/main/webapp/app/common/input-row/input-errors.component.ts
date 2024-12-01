@@ -6,7 +6,6 @@ import { getGlobalErrorMessage } from 'app/common/error-handler.injectable';
 
 @Component({
   selector: 'app-input-errors',
-  standalone: true,
   templateUrl: './input-errors.component.html',
   imports: [KeyValuePipe]
 })

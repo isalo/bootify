@@ -6,7 +6,6 @@ import { AuthenticationService } from 'app/security/authentication.service';
 
 @Component({
   selector: 'app-header',
-  standalone: true,
   imports: [CommonModule, NgOptimizedImage, RouterLink],
   templateUrl: './header.component.html'
 })

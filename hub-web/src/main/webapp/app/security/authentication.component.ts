@@ -10,7 +10,6 @@ import { ErrorHandler } from 'app/common/error-handler.injectable';
 
 @Component({
   selector: 'app-login',
-  standalone: true,
   imports: [CommonModule, RouterLink, ReactiveFormsModule, InputRowComponent],
   templateUrl: './authentication.component.html'
 })
@@ -22,7 +21,7 @@ export class AuthenticationComponent {
 
   loginForm = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.maxLength(255)]),
-    password: new FormControl(null, [Validators.required, Validators.maxLength(255)])
+    password: new FormControl(null, [Validators.required, Validators.maxLength(72)])
   }, { updateOn: 'submit' });
 
   getMessage(key: string, details?: any) {
