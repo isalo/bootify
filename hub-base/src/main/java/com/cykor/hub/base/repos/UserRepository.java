@@ -13,10 +13,15 @@ public interface UserRepository extends JpaRepository<User, UUID> {
     @EntityGraph(attributePaths = "roles")
     User findByEmailIgnoreCase(String email);
 
+    @EntityGraph(attributePaths = "roles")
+    User findByExternalLogin(String externalLogin);
+
     boolean existsByEmailIgnoreCase(String email);
 
     User findFirstByCongregations(Congregation congregation);
 
     List<User> findAllByCongregations(Congregation congregation);
+
+    boolean existsByExternalLoginIgnoreCase(String externalLogin);
 
 }

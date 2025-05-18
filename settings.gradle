@@ -1,1 +1,1 @@
-include 'hub-base', 'hub-web'
+include 'hub-base', 'hub-carts', 'hub-secretary', 'hub-meetings', 'hub-web'

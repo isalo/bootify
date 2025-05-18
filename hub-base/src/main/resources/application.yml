@@ -28,6 +28,7 @@ error:
       org.springframework.security.authorization.AuthorizationDeniedException: unauthorized
     codes:
       UserEmailUnique: USER_EMAIL_UNIQUE
+      UserExternalLoginUnique: USER_EXTERNAL_LOGIN_UNIQUE
 management:
   endpoints:
     web:
@@ -38,5 +39,13 @@ management:
       show-details: always
 springdoc:
   pathsToMatch: /api/**, /authenticate, /register
+app:
+  baseHost: ${BASE_HOST:http://localhost:3000}
+  google:
+    client-id: ${GOOGLE_CLIENT_ID:<<YOUR_GOOGLE_CLIENT>>}
+    client-secret: ${GOOGLE_CLIENT_SECRET:<<YOUR_GOOGLE_SECRET>>}
+  facebook:
+    client-id: ${FACEBOOK_CLIENT_ID:<<YOUR_FACEBOOK_CLIENT>>}
+    client-secret: ${FACEBOOK_CLIENT_SECRET:<<YOUR_FACEBOOK_SECRET>>}
 jwt:
   secret: 0666438A7846FAC78F805F3E1C85F5EB

@@ -20,6 +20,8 @@ public interface UserService {
 
     boolean emailExists(String email);
 
+    boolean externalLoginExists(String externalLogin);
+
     ReferencedWarning getReferencedWarning(UUID id);
 
 }

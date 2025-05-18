@@ -5,6 +5,7 @@ import com.cykor.hub.base.repos.CongregationRepository;
 import com.cykor.hub.base.repos.LoginHistoryRepository;
 import com.cykor.hub.base.repos.PrivilegeRepository;
 import com.cykor.hub.base.repos.RoleRepository;
+import com.cykor.hub.base.repos.UserLoginsRepository;
 import com.cykor.hub.base.repos.UserRepository;
 import io.restassured.RestAssured;
 import jakarta.annotation.PostConstruct;
@@ -36,7 +37,7 @@ import org.testcontainers.containers.PostgreSQLContainer;
 public abstract class BaseIT {
 
     @ServiceConnection
-    private static final PostgreSQLContainer postgreSQLContainer = new PostgreSQLContainer("postgres:17.1");
+    private static final PostgreSQLContainer postgreSQLContainer = new PostgreSQLContainer("postgres:17.4");
 
     static {
         postgreSQLContainer.withReuse(true)
@@ -61,6 +62,9 @@ public abstract class BaseIT {
     @Autowired
     public CongregationRepository congregationRepository;
 
+    @Autowired
+    public UserLoginsRepository userLoginsRepository;
+
     @PostConstruct
     public void initRestAssured() {
         RestAssured.port = serverPort;
@@ -76,15 +80,15 @@ public abstract class BaseIT {
     public String roleAdminJwtToken() {
         // user roleAdmin, expires 2040-01-01
         return "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9." +
-                "eyJzdWIiOiJyb2xlQWRtaW4iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6ImJvb3RpZnkiLCJpYXQiOjE3MjYyNDQxMDIsImV4cCI6MjIwODk4ODgwMH0." +
-                "RxugPyzmx-L6_WjQvTZ-YXWGK4Xr31RVFW-RDGfpKBGX6B9OpQ8AwPedimxsKAHa-CWuRezd3JgGLR_cAaCxYQ";
+                "eyJzdWIiOiJyb2xlQWRtaW4iLCJsb2dpbl90eXBlIjoiZGlyZWN0Iiwicm9sZXMiOlsiUk9MRV9BRE1JTiJdLCJpc3MiOiJib290aWZ5IiwiaWF0IjoxNzI2MjQ0MTAyLCJleHAiOjIyMDg5ODg4MDB9." +
+                "CNVnw-l8ICY0__S_SjV8lJS0XkjuK3-pyxvjU47nUcdwtl3ormVRmKadMH4AGUqbx-2Kt7jjXvlZZJk5_tEUVQ";
     }
 
     public String roleUserJwtToken() {
         // user roleUser, expires 2040-01-01
         return "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9." +
-                "eyJzdWIiOiJyb2xlVXNlciIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpc3MiOiJib290aWZ5IiwiaWF0IjoxNzI2MjQ0MTAyLCJleHAiOjIyMDg5ODg4MDB9." +
-                "PDvvIR47JyxFToo867bNYyO8xkaautfS0zbliUnpdOdZMJc9qFqPF6ZQZ1WO_lPEFCRBkHMyYPwg4dF6K06evw";
+                "eyJzdWIiOiJyb2xlVXNlciIsImxvZ2luX3R5cGUiOiJkaXJlY3QiLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaXNzIjoiYm9vdGlmeSIsImlhdCI6MTcyNjI0NDEwMiwiZXhwIjoyMjA4OTg4ODAwfQ." +
+                "bagYyjPiesz2IsyUTBmuH0jOhIOboRhhN0bVKPLk9IISc7HAO-_ui-LbJmWigpuKNTVVeeMYhKFaN7SIWXLMFg";
     }
 
 }

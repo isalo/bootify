@@ -30,6 +30,7 @@ public class RegistrationService {
         log.info("registering new user: {}", registrationRequest.getEmail());
 
         final User user = new User();
+        user.setLoginType("direct");
         user.setEmail(registrationRequest.getEmail());
         user.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
         user.setFirstName(registrationRequest.getFirstName());

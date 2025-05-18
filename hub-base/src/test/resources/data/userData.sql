@@ -17,6 +17,8 @@ INSERT INTO users (
     profile_image_url,
     is_active,
     is_locked,
+    external_login,
+    login_type,
     date_created,
     last_updated
 ) VALUES (
@@ -38,6 +40,8 @@ INSERT INTO users (
     'Nulla facilisis.',
     TRUE,
     TRUE,
+    'Commodo consequat.',
+    'Consetetur sadipscing.',
     '2024-09-02 14:30:00',
     '2024-09-02 14:30:00'
 );
@@ -69,6 +73,8 @@ INSERT INTO users (
     profile_image_url,
     is_active,
     is_locked,
+    external_login,
+    login_type,
     date_created,
     last_updated
 ) VALUES (
@@ -90,6 +96,8 @@ INSERT INTO users (
     'Et ea rebum.',
     FALSE,
     FALSE,
+    'Nulla facilisis.',
+    'Sed diam nonumy.',
     '2024-09-03 14:30:00',
     '2024-09-03 14:30:00'
 );

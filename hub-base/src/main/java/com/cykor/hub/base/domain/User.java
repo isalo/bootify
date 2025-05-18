@@ -85,6 +85,12 @@ public class User {
     @Column
     private Boolean isLocked;
 
+    @Column(unique = true)
+    private String externalLogin;
+
+    @Column
+    private String loginType;
+
     @ManyToMany
     @JoinTable(
             name = "UserRoles",
@@ -103,6 +109,9 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "congregationId")
     )
     private Set<Congregation> congregations;
+
+    @OneToMany(mappedBy = "user")
+    private Set<UserLogins> userLogin;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)

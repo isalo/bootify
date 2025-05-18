@@ -1,7 +1,7 @@
 package com.cykor.hub.base.config;
 
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.cykor.hub.base.service.JwtTokenService;
-import com.cykor.hub.base.service.JwtUserDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,9 +11,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 
@@ -22,15 +22,17 @@ import org.springframework.web.filter.OncePerRequestFilter;
  * a valid JWT has been found, load the user details from the database and set the
  * authenticated principal for the duration of this request.
  */
-@Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
-    private final JwtUserDetailsService jwtUserDetailsService;
+    private final UserDetailsService userDetailsService;
+    private final UserDetailsService socialUserDetailsService;
     private final JwtTokenService jwtTokenService;
 
-    public JwtRequestFilter(final JwtUserDetailsService jwtUserDetailsService,
+    public JwtRequestFilter(final UserDetailsService userDetailsService,
+            final UserDetailsService socialUserDetailsService,
             final JwtTokenService jwtTokenService) {
-        this.jwtUserDetailsService = jwtUserDetailsService;
+        this.userDetailsService = userDetailsService;
+        this.socialUserDetailsService = socialUserDetailsService;
         this.jwtTokenService = jwtTokenService;
     }
 
@@ -46,8 +48,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         }
 
         final String token = header.substring(7);
-        final String username = jwtTokenService.validateTokenAndGetUsername(token);
-        if (username == null) {
+        final DecodedJWT jwt = jwtTokenService.validateToken(token);
+        if (jwt == null || jwt.getSubject() == null) {
             // validation failed or token expired
             chain.doFilter(request, response);
             return;
@@ -55,7 +57,11 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         final UserDetails userDetails;
         try {
-            userDetails = jwtUserDetailsService.loadUserByUsername(username);
+            if ("direct".equals(jwt.getClaim("login_type").asString())) {
+                userDetails = userDetailsService.loadUserByUsername(jwt.getSubject());
+            } else {
+                userDetails = socialUserDetailsService.loadUserByUsername(jwt.getSubject());
+            }
         } catch (final UsernameNotFoundException userNotFoundEx) {
             // user not found
             chain.doFilter(request, response);

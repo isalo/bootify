@@ -7,7 +7,6 @@ import com.cykor.hub.base.model.UserDTO;
 import com.cykor.hub.base.repos.CongregationRepository;
 import com.cykor.hub.base.repos.RoleRepository;
 import com.cykor.hub.base.util.NotFoundException;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import org.mapstruct.AfterMapping;
@@ -56,13 +55,13 @@ public interface UserMapper {
             @Context CongregationRepository congregationRepository,
             @Context PasswordEncoder passwordEncoder) {
         final List<Role> roles = roleRepository.findAllById(
-                userDTO.getRoles() == null ? Collections.emptyList() : userDTO.getRoles());
+                userDTO.getRoles() == null ? List.of() : userDTO.getRoles());
         if (roles.size() != (userDTO.getRoles() == null ? 0 : userDTO.getRoles().size())) {
             throw new NotFoundException("one of roles not found");
         }
         user.setRoles(new HashSet<>(roles));
         final List<Congregation> congregations = congregationRepository.findAllById(
-                userDTO.getCongregations() == null ? Collections.emptyList() : userDTO.getCongregations());
+                userDTO.getCongregations() == null ? List.of() : userDTO.getCongregations());
         if (congregations.size() != (userDTO.getCongregations() == null ? 0 : userDTO.getCongregations().size())) {
             throw new NotFoundException("one of congregations not found");
         }

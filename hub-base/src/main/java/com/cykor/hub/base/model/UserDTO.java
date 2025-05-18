@@ -65,6 +65,13 @@ public class UserDTO {
     @JsonProperty("isLocked")
     private Boolean isLocked;
 
+    @Size(max = 255)
+    @UserExternalLoginUnique
+    private String externalLogin;
+
+    @Size(max = 255)
+    private String loginType;
+
     private List<UUID> roles;
 
     private List<UUID> congregations;

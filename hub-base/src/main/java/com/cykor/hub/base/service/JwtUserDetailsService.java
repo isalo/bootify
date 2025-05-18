@@ -3,7 +3,6 @@ package com.cykor.hub.base.service;
 import com.cykor.hub.base.domain.User;
 import com.cykor.hub.base.model.JwtUserDetails;
 import com.cykor.hub.base.repos.UserRepository;
-import java.util.Collections;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -29,7 +28,7 @@ public class JwtUserDetailsService implements UserDetailsService {
             log.warn("user not found: {}", username);
             throw new UsernameNotFoundException("User " + username + " not found");
         }
-        final List<SimpleGrantedAuthority> authorities = user.getRoles() == null ? Collections.emptyList() : 
+        final List<SimpleGrantedAuthority> authorities = user.getRoles() == null ? List.of() : 
                 user.getRoles()
                 .stream()
                 .map(roleRef -> new SimpleGrantedAuthority(roleRef.getName()))

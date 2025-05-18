@@ -17,6 +17,8 @@ CREATE TABLE users (
     profile_image_url VARCHAR(255),
     is_active BOOLEAN,
     is_locked BOOLEAN,
+    external_login VARCHAR(255),
+    login_type VARCHAR(255),
     date_created TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     last_updated TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     CONSTRAINT users_pkey PRIMARY KEY (id)
@@ -66,6 +68,18 @@ CREATE TABLE congregations (
     CONSTRAINT congregations_pkey PRIMARY KEY (id)
 );
 
+CREATE TABLE user_loginses (
+    id UUID NOT NULL,
+    login_provider VARCHAR(255) NOT NULL,
+    provider_key UUID NOT NULL,
+    provider_display_name VARCHAR(255),
+    user_id UUID NOT NULL,
+    user_id UUID NOT NULL,
+    date_created TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+    last_updated TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+    CONSTRAINT user_loginses_pkey PRIMARY KEY (id)
+);
+
 CREATE TABLE user_roles (
     user_id UUID NOT NULL,
     role_id UUID NOT NULL
@@ -83,11 +97,15 @@ CREATE TABLE user_congregations (
 
 ALTER TABLE users ADD CONSTRAINT unique_users_email UNIQUE (email);
 
+ALTER TABLE users ADD CONSTRAINT unique_users_external_login UNIQUE (external_login);
+
 ALTER TABLE roles ADD CONSTRAINT unique_roles_name UNIQUE (name);
 
 ALTER TABLE privileges ADD CONSTRAINT unique_privileges_name UNIQUE (name);
 
 ALTER TABLE login_histories ADD CONSTRAINT fk_login_histories_user_id FOREIGN KEY (user_id) REFERENCES users (id) ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+ALTER TABLE user_loginses ADD CONSTRAINT fk_user_loginses_user_id FOREIGN KEY (user_id) REFERENCES users (id) ON UPDATE NO ACTION ON DELETE NO ACTION;
 
 ALTER TABLE user_roles ADD CONSTRAINT pk_user_roles PRIMARY KEY (user_id, role_id);
 

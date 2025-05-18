@@ -30,7 +30,7 @@ import org.springframework.web.servlet.HandlerMapping;
 )
 public @interface UserEmailUnique {
 
-    String message() default "{Exists.user.email}";
+    String message() default "{exists.user.email}";
 
     Class<?>[] groups() default {};
 

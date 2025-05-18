@@ -2,10 +2,13 @@ package com.cykor.hub.base.config;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
+import com.cykor.hub.base.service.JwtSocialUserDetailsService;
+import com.cykor.hub.base.service.JwtTokenService;
+import com.cykor.hub.base.service.JwtUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -26,20 +29,30 @@ public class JwtSecurityConfig {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(
-            final AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
+    public AuthenticationProvider authenticationProvider(final PasswordEncoder passwordEncoder,
+            final JwtUserDetailsService jwtUserDetailsService) {
+        final DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider(passwordEncoder);
+        authenticationProvider.setUserDetailsService(jwtUserDetailsService);
+        return authenticationProvider;
+    }
+
+    public JwtRequestFilter jwtRequestFilter(final JwtUserDetailsService jwtUserDetailsService,
+            final JwtSocialUserDetailsService jwtSocialUserDetailsService,
+            final JwtTokenService jwtTokenService) {
+        return new JwtRequestFilter(jwtUserDetailsService, jwtSocialUserDetailsService, jwtTokenService);
     }
 
     @Bean
     public SecurityFilterChain jwtFilterChain(final HttpSecurity http,
-            final JwtRequestFilter jwtRequestFilter) throws Exception {
+            final JwtUserDetailsService jwtUserDetailsService,
+            final JwtSocialUserDetailsService jwtSocialUserDetailsService,
+            final JwtTokenService jwtTokenService) throws Exception {
         return http.cors(withDefaults())
                 .csrf(csrf -> csrf.disable())
                 .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.sameOrigin()))
                 .authorizeHttpRequests(authorize -> authorize.anyRequest().permitAll())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtRequestFilter(jwtUserDetailsService, jwtSocialUserDetailsService, jwtTokenService), UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 

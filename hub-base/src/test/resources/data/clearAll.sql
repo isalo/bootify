@@ -13,3 +13,5 @@ DELETE FROM privileges;
 DELETE FROM login_histories;
 
 DELETE FROM congregations;
+
+DELETE FROM user_loginses;

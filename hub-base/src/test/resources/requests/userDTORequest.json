@@ -15,5 +15,7 @@
   "phoneConfirmed" : false,
   "profileImageUrl" : "No sea takimata.",
   "isActive" : false,
-  "isLocked" : false
+  "isLocked" : false,
+  "externalLogin" : "Stet clita kasd.",
+  "loginType" : "Sed ut perspiciatis."
 }

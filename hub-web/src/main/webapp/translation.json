@@ -1,0 +1,122 @@
+{
+  "app": {
+    "title": "Hub"
+  },
+  "navigation": {
+    "toggle": "Toggle navigation",
+    "home": "Home",
+    "login": "Login",
+    "logout": "Logout"
+  },
+  "home": {
+    "index": {
+      "headline": "Welcome to your new app!",
+      "text": "Your app was created with <a href=\"https://bootify.io\" target=\"_blank\" className=\"underline\">Bootify.io</a> and can now be customized. If you are happy with the result, <strong>please recommend us to other developers</strong> - so Bootify.io can grow further.",
+      "swagger": {
+        "text": "Swagger is",
+        "link": "available here"
+      }
+    }
+  },
+  "error": {
+    "page": {
+      "headline": "Error",
+      "message": "The page you are looking for is not available right now."
+    }
+  },
+  "authentication": {
+    "login": {
+      "headline": "Login",
+      "required": "Please login to access this area.",
+      "error": "Your login was not successful - please try again."
+    },
+    "email": {
+      "label": "Email"
+    },
+    "password": {
+      "label": "Password"
+    },
+    "registerNow": {
+      "text": "You don't have an account yet?",
+      "link": "Register now"
+    },
+    "social": {
+      "headline": "Or continue with",
+      "google": "Google",
+      "facebook": "Facebook"
+    },
+    "logout": {
+      "success": "Your logout was successful."
+    }
+  },
+  "registrationRequest": {
+    "email": {
+      "label": "Email"
+    },
+    "password": {
+      "label": "Password"
+    },
+    "firstName": {
+      "label": "First Name"
+    },
+    "lastName": {
+      "label": "Last Name"
+    },
+    "resetPasswordToken": {
+      "label": "Reset Password Token"
+    },
+    "resetPasswordTokenSentAt": {
+      "label": "Reset Password Token Sent At"
+    },
+    "emailConfirmationToken": {
+      "label": "Email Confirmation Token"
+    },
+    "emailConfirmationTokenSentAt": {
+      "label": "Email Confirmation Token Sent At"
+    },
+    "emailConfirmed": {
+      "label": "Email Confirmed"
+    },
+    "countryCode": {
+      "label": "Country Code"
+    },
+    "phone": {
+      "label": "Phone"
+    },
+    "phoneConfirmationToken": {
+      "label": "Phone Confirmation Token"
+    },
+    "phoneConfirmationTokenSentAt": {
+      "label": "Phone Confirmation Token Sent At"
+    },
+    "phoneConfirmed": {
+      "label": "Phone Confirmed"
+    },
+    "profileImageUrl": {
+      "label": "Profile Image Url"
+    },
+    "isActive": {
+      "label": "Is Active"
+    },
+    "isLocked": {
+      "label": "Is Locked"
+    }
+  },
+  "registration": {
+    "register": {
+      "headline": "Registration",
+      "taken": "This account is already taken. Please login.",
+      "success": "Your registration is complete. You may now login."
+    }
+  },
+  "select": {
+    "empty": {
+      "label": "Please select"
+    }
+  },
+  "required": "Please provide a value.",
+  "maxlength": "Your value must have a length of less then ${max} characters.",
+  "valid": {
+    "offsetDateTime": "Please provide a valid date with offset, for example \"2026-01-23T14:55:00+01:00\"."
+  }
+}

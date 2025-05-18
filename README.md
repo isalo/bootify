@@ -14,31 +14,28 @@ project you have to select the highest module `hub-web.main` as the classpath.
 Lombok must be supported by your IDE. For IntelliJ install the Lombok plugin and enable annotation processing -
 [learn more](https://bootify.io/next-steps/spring-boot-with-lombok.html).
 
-In addition to the Spring Boot application, the development server must also be started - for this
-[Node.js](https://nodejs.org/) version 22 is required. Angular CLI and required dependencies must be installed once:
+In addition to the Spring Boot application, the DevServer must also be started - for this
+[Node.js](https://nodejs.org/) version 22 is required. On first usage and after updates the dependencies have to be installed:
 
 ```
-npm install -g @angular/cli
 npm install
 ```
 
-The development server can be started as follows:
+The DevServer can be started as follows:
 
 ```
-ng serve
+npm run devserver
 ```
 
-Your application is now accessible under `localhost:4200`.
-
-Add code using Angular schematics with `ng generate ...`.
-Generate a messages.json for translation with `ng extract-i18n –format=json`.
+Using a proxy the whole application is now accessible under `localhost:3000`. All changes to the templates and JS/CSS
+files are immediately visible in the browser.
 
 ## Testing requirements
 
 To run the tests and build, [Docker](https://www.docker.com/get-started/) must be available on the current system. Due
 to the reuse flag, the container will not shut down after the tests. It can be stopped manually if needed.
 
-Frontend unit tests can be executed with `ng test`.
+Frontend unit tests can be executed with `npm run test`.
 
 ## Build
 
@@ -47,6 +44,8 @@ The application can be tested and built using the following command:
 ```
 gradlew clean build
 ```
+
+Node.js is automatically downloaded using the `gradle-node-plugin` and the final JS/CSS files are integrated into the jar.
 
 Start your application with the following command - here with the profile `production`:
 
@@ -66,6 +65,7 @@ gradlew bootBuildImage --imageName=com.cykor/hub
 * [Gradle user manual](https://docs.gradle.org/)  
 * [Spring Boot reference](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)  
 * [Spring Data JPA reference](https://docs.spring.io/spring-data/jpa/reference/jpa.html)
-* [Learn Angular](https://angular.dev/tutorials/learn-angular)  
-* [Angular CLI](https://angular.dev/tools/cli)
+* [Learn React](https://react.dev/learn)
+* [Webpack concepts](https://webpack.js.org/concepts/)  
+* [npm docs](https://docs.npmjs.com/)  
 * [Tailwind CSS](https://tailwindcss.com/)  
