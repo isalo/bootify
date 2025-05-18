@@ -166,8 +166,9 @@ project(':hub-base') {
         api('org.flywaydb:flyway-database-postgresql')
         api('org.springframework.boot:spring-boot-starter-actuator')
         api('io.github.wimdeblauwe:error-handling-spring-boot-starter:4.5.0')
+        api('org.springframework.boot:spring-boot-starter-thymeleaf')
+        api('org.springframework.boot:spring-boot-starter-mail')
         api('org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.6')
         api('jakarta.mail:jakarta.mail-api')
-        api('org.springframework.boot:spring-boot-starter-mail')
     }
 }

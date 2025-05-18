@@ -4,7 +4,7 @@ This app was created with Bootify.io - tips on working with the code [can be fou
 
 ## Development
 
-Update your local database connection in `application.yml` or create your own `application-local.yml` file to override
+Update your local database connection and SMTP password in `application.yml` or create your own `application-local.yml` file to override
 settings for development.
 
 During development it is recommended to use the profile `local`. In IntelliJ `-Dspring.profiles.active=local` can be

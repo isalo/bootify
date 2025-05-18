@@ -17,6 +17,18 @@ spring:
             non_contextual_creation: true
         id:
           new_generator_mappings: true
+  mail:
+    host: ${SMTP_HOST:smtp.google.com}
+    username: ${SMTP_USERNAME:cykor}
+    password: ${SMTP_PASSWORD:<<YOUR_PASSWORD>>}
+    port: 587
+    properties.mail.smtp:
+      auth: true
+      starttls:
+        enable: true
+        required: true
+      connectiontimeout: 15000
+      timeout: 45000
 error:
   handling:
     http-status-in-json-response: true
@@ -41,6 +53,9 @@ springdoc:
   pathsToMatch: /api/**, /authenticate, /register
 app:
   baseHost: ${BASE_HOST:http://localhost:3000}
+  mail:
+    from: no-reply@cykor.com
+    displayName: CY-KOR Corp
   google:
     client-id: ${GOOGLE_CLIENT_ID:<<YOUR_GOOGLE_CLIENT>>}
     client-secret: ${GOOGLE_CLIENT_SECRET:<<YOUR_GOOGLE_SECRET>>}
