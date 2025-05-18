@@ -110,9 +110,6 @@ public class User {
     )
     private Set<Congregation> congregations;
 
-    @OneToMany(mappedBy = "user")
-    private Set<UserLogins> userLogin;
-
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private OffsetDateTime dateCreated;

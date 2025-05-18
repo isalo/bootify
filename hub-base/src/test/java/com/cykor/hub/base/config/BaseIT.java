@@ -5,7 +5,6 @@ import com.cykor.hub.base.repos.CongregationRepository;
 import com.cykor.hub.base.repos.LoginHistoryRepository;
 import com.cykor.hub.base.repos.PrivilegeRepository;
 import com.cykor.hub.base.repos.RoleRepository;
-import com.cykor.hub.base.repos.UserLoginsRepository;
 import com.cykor.hub.base.repos.UserRepository;
 import io.restassured.RestAssured;
 import jakarta.annotation.PostConstruct;
@@ -61,9 +60,6 @@ public abstract class BaseIT {
 
     @Autowired
     public CongregationRepository congregationRepository;
-
-    @Autowired
-    public UserLoginsRepository userLoginsRepository;
 
     @PostConstruct
     public void initRestAssured() {

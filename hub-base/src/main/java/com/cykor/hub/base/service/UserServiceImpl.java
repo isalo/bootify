@@ -2,12 +2,10 @@ package com.cykor.hub.base.service;
 
 import com.cykor.hub.base.domain.LoginHistory;
 import com.cykor.hub.base.domain.User;
-import com.cykor.hub.base.domain.UserLogins;
 import com.cykor.hub.base.model.UserDTO;
 import com.cykor.hub.base.repos.CongregationRepository;
 import com.cykor.hub.base.repos.LoginHistoryRepository;
 import com.cykor.hub.base.repos.RoleRepository;
-import com.cykor.hub.base.repos.UserLoginsRepository;
 import com.cykor.hub.base.repos.UserRepository;
 import com.cykor.hub.base.util.NotFoundException;
 import com.cykor.hub.base.util.ReferencedWarning;
@@ -29,20 +27,17 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
     private final LoginHistoryRepository loginHistoryRepository;
-    private final UserLoginsRepository userLoginsRepository;
 
     public UserServiceImpl(final UserRepository userRepository, final RoleRepository roleRepository,
             final CongregationRepository congregationRepository,
             final PasswordEncoder passwordEncoder, final UserMapper userMapper,
-            final LoginHistoryRepository loginHistoryRepository,
-            final UserLoginsRepository userLoginsRepository) {
+            final LoginHistoryRepository loginHistoryRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.congregationRepository = congregationRepository;
         this.passwordEncoder = passwordEncoder;
         this.userMapper = userMapper;
         this.loginHistoryRepository = loginHistoryRepository;
-        this.userLoginsRepository = userLoginsRepository;
     }
 
     @Override
@@ -99,12 +94,6 @@ public class UserServiceImpl implements UserService {
         if (userLoginHistory != null) {
             referencedWarning.setKey("user.loginHistory.user.referenced");
             referencedWarning.addParam(userLoginHistory.getId());
-            return referencedWarning;
-        }
-        final UserLogins userUserLogins = userLoginsRepository.findFirstByUser(user);
-        if (userUserLogins != null) {
-            referencedWarning.setKey("user.userLogins.user.referenced");
-            referencedWarning.addParam(userUserLogins.getId());
             return referencedWarning;
         }
         return null;
