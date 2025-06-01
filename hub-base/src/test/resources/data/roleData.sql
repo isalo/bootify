@@ -7,7 +7,7 @@ INSERT INTO roles (
 ) VALUES (
     'a96e0a04-d20f-3096-bc64-dac2d639a577',
     'ROLE_ADMIN',
-    'Consectetuer adipiscing.',
+    'Xonsectetuer adipiscing.',
     '2024-09-02 14:30:00',
     '2024-09-02 14:30:00'
 );

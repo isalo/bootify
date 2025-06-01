@@ -6,8 +6,8 @@ INSERT INTO privileges (
     last_updated
 ) VALUES (
     'a92d0103-08a6-3379-9a3d-9c728ee74244',
-    'Sed diam voluptua.',
-    'Consectetuer adipiscing.',
+    'Zed diam voluptua.',
+    'Xonsectetuer adipiscing.',
     '2024-09-02 14:30:00',
     '2024-09-02 14:30:00'
 );

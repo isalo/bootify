@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '3.4.5'
+        springBootVersion = '3.5.0'
     }
     repositories {
         mavenCentral()
@@ -53,7 +53,11 @@ subprojects {
         testImplementation('org.testcontainers:postgresql')
     }
 
-    sourceCompatibility = '21'
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(21)
+        }
+    }
 
     ext {
         projectName = "$rootProjectName-$project.name"
@@ -64,14 +68,15 @@ subprojects {
     }
 
     bootRun {
-        enabled false
+        enabled = false
     }
 
     bootBuildImage {
-        enabled false
+        enabled = false
     }
 
-    task testJar(type: Jar, dependsOn: testClasses) {
+    tasks.register('testJar', Jar) {
+        dependsOn testClasses
         from sourceSets.test.output
         archiveClassifier.set('tests')
     }
@@ -87,20 +92,20 @@ project(':hub-web') {
     bootRun {
         environment SPRING_PROFILES_ACTIVE: environment.SPRING_PROFILES_ACTIVE ?: 'local'
         workingDir rootProject.projectDir
-        enabled true
+        enabled = true
     }
 
     bootBuildImage {
-        enabled true
+        enabled = true
     }
 
     node {
         download.set(true)
-        version.set('22.15.0')
+        version.set('22.16.0')
         nodeProjectDir.set(file("${project.projectDir}/.."))
     }
 
-    task npmRunBuild(type: NpmTask) {
+    tasks.register('npmRunBuild', NpmTask) {
         args = ['run', 'build']
         dependsOn npmInstall
 
@@ -165,7 +170,7 @@ project(':hub-base') {
         api('org.flywaydb:flyway-core')
         api('org.flywaydb:flyway-database-postgresql')
         api('org.springframework.boot:spring-boot-starter-actuator')
-        api('io.github.wimdeblauwe:error-handling-spring-boot-starter:4.5.0')
+        api('io.github.wimdeblauwe:error-handling-spring-boot-starter:4.6.0')
         api('org.springframework.boot:spring-boot-starter-thymeleaf')
         api('org.springframework.boot:spring-boot-starter-mail')
         api('org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.6')

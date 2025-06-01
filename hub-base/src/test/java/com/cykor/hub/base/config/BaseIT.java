@@ -43,8 +43,8 @@ import org.testcontainers.containers.wait.strategy.Wait;
 public abstract class BaseIT {
 
     @ServiceConnection
-    private static final PostgreSQLContainer postgreSQLContainer = new PostgreSQLContainer("postgres:17.4");
-    private static final GenericContainer<?> mailpitContainer = new GenericContainer<>("axllent/mailpit:v1.24");
+    private static final PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer<>("postgres:17.5");
+    private static final GenericContainer<?> mailpitContainer = new GenericContainer<>("axllent/mailpit:v1.25");
     public static String smtpHost;
     public static Integer smtpPort;
     public static String messagesUrl;

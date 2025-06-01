@@ -1,4 +1,4 @@
-package com.cykor.hub.base;
+package com.cykor.hub.web;
 
 import com.cykor.hub.base.config.BaseIT;
 import org.junit.jupiter.api.Test;
