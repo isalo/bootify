@@ -86,8 +86,7 @@ export function setYupDefaults() {
     mixed: {
       required: t('required')    },
     string: {
-      max: t('maxlength'),
-      
+      max: t('maxlength')
     }
   });
 }

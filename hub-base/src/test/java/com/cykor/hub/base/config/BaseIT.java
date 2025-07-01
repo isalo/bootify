@@ -44,7 +44,7 @@ public abstract class BaseIT {
 
     @ServiceConnection
     private static final PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer<>("postgres:17.5");
-    private static final GenericContainer<?> mailpitContainer = new GenericContainer<>("axllent/mailpit:v1.25");
+    private static final GenericContainer<?> mailpitContainer = new GenericContainer<>("axllent/mailpit:v1.26");
     public static String smtpHost;
     public static Integer smtpPort;
     public static String messagesUrl;

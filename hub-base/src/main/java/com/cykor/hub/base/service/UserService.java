@@ -9,16 +9,16 @@ import com.cykor.hub.base.repos.RoleRepository;
 import com.cykor.hub.base.repos.UserRepository;
 import com.cykor.hub.base.util.NotFoundException;
 import com.cykor.hub.base.util.ReferencedWarning;
-import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.UUID;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class UserService {
 
     private final UserRepository userRepository;

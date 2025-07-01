@@ -5,15 +5,15 @@ import com.cykor.hub.base.model.CongregationDTO;
 import com.cykor.hub.base.repos.CongregationRepository;
 import com.cykor.hub.base.repos.UserRepository;
 import com.cykor.hub.base.util.NotFoundException;
-import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.UUID;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class CongregationService {
 
     private final CongregationRepository congregationRepository;

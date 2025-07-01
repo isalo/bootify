@@ -50,7 +50,7 @@ public class AuthenticationResource {
             .defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
             .build();
     private final RestClient facebookClient = RestClient.builder()
-            .baseUrl("https://graph.facebook.com/v22.0/")
+            .baseUrl("https://graph.facebook.com/v23.0/")
             .defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
             .build();
 
