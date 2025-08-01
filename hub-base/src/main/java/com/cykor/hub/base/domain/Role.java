@@ -10,6 +10,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import java.time.OffsetDateTime;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 import lombok.Getter;
@@ -40,7 +41,7 @@ public class Role {
     private String description;
 
     @ManyToMany(mappedBy = "roles")
-    private Set<User> users;
+    private Set<User> users = new HashSet<>();
 
     @ManyToMany
     @JoinTable(
@@ -48,7 +49,7 @@ public class Role {
             joinColumns = @JoinColumn(name = "roleId"),
             inverseJoinColumns = @JoinColumn(name = "privilegeId")
     )
-    private Set<Privilege> privileges;
+    private Set<Privilege> privileges = new HashSet<>();
 
     @CreatedDate
     @Column(nullable = false, updatable = false)

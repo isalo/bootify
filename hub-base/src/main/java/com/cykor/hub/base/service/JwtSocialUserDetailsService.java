@@ -28,8 +28,7 @@ public class JwtSocialUserDetailsService implements UserDetailsService {
             log.warn("user not found: {}", username);
             throw new UsernameNotFoundException("User " + username + " not found");
         }
-        final List<SimpleGrantedAuthority> authorities = user.getRoles() == null ? List.of() : 
-                user.getRoles()
+        final List<SimpleGrantedAuthority> authorities = user.getRoles()
                 .stream()
                 .map(roleRef -> new SimpleGrantedAuthority(roleRef.getName()))
                 .toList();

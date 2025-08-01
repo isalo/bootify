@@ -129,7 +129,7 @@ export default function Authentication() {
     <form onSubmit={useFormResult.handleSubmit(login)} noValidate>
       <InputRow useFormResult={useFormResult} object="authentication" field="email" required={true} />
       <InputRow useFormResult={useFormResult} object="authentication" field="password" required={true} type="password" />
-      <input type="submit" value={t('authentication.login.headline')} className="inline-block text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-300  focus:ring-4 rounded px-5 py-2 mt-6" />
+      <input type="submit" value={t('authentication.login.headline')} className="inline-block text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-300  focus:ring-4 rounded px-5 py-2 cursor-pointer mt-6" />
     </form>
     <p className="mt-12">
       <span>{t('authentication.registerNow.text')}</span>
@@ -138,11 +138,11 @@ export default function Authentication() {
     </p>
     <h4 className="text-2xl font-medium mt-12 mb-4">{t('authentication.social.headline')}</h4>
     <div className="md:w-2/6">
-      <a onClick={() => loginGoogle()} className="inline-block text-center text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-4 rounded w-full px-5 py-2 mb-2">
+      <a onClick={() => loginGoogle()} className="inline-block text-center text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-4 rounded w-full px-5 py-2 mb-2 cursor-pointer">
         <img src="/images/google.svg" width="20" height="20" className="inline align-text-bottom me-1" />
         <span>{t('authentication.social.google')}</span>
       </a>
-      <a onClick={() => loginFacebook()} className="inline-block text-center text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-4 rounded w-full px-5 py-2 mb-2">
+      <a onClick={() => loginFacebook()} className="inline-block text-center text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-4 rounded w-full px-5 py-2 mb-2 cursor-pointer">
         <img src="/images/facebook.svg" width="20" height="20" className="inline align-text-bottom me-1" />
         <span>{t('authentication.social.facebook')}</span>
       </a>

@@ -86,7 +86,7 @@ export default function Registration() {
       <InputRow useFormResult={useFormResult} object="registrationRequest" field="profileImageUrl" />
       <InputRow useFormResult={useFormResult} object="registrationRequest" field="isActive" type="checkbox" />
       <InputRow useFormResult={useFormResult} object="registrationRequest" field="isLocked" type="checkbox" />
-      <input type="submit" value={t('registration.register.headline')} className="inline-block text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-300  focus:ring-4 rounded px-5 py-2 mt-6" />
+      <input type="submit" value={t('registration.register.headline')} className="inline-block text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-300  focus:ring-4 rounded px-5 py-2 cursor-pointer mt-6" />
     </form>
   </>);
 }

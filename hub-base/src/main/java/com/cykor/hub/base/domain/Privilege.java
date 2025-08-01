@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import java.time.OffsetDateTime;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 import lombok.Getter;
@@ -38,7 +39,7 @@ public class Privilege {
     private String description;
 
     @ManyToMany(mappedBy = "privileges")
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 
     @CreatedDate
     @Column(nullable = false, updatable = false)

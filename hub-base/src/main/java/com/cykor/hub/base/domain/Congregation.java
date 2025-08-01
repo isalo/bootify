@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import java.time.OffsetDateTime;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 import lombok.Getter;
@@ -56,7 +57,7 @@ public class Congregation {
     private Double longitude;
 
     @ManyToMany(mappedBy = "congregations")
-    private Set<User> users;
+    private Set<User> users = new HashSet<>();
 
     @CreatedDate
     @Column(nullable = false, updatable = false)

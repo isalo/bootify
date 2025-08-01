@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '3.5.3'
+        springBootVersion = '3.5.4'
     }
     repositories {
         mavenCentral()
@@ -8,7 +8,7 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath("com.github.node-gradle:gradle-node-plugin:7.1.0")
+        classpath('com.github.node-gradle:gradle-node-plugin:7.1.0')
     }
 }
 
@@ -101,7 +101,7 @@ project(':hub-web') {
 
     node {
         download.set(true)
-        version.set('22.16.0')
+        version.set('22.17.1')
         nodeProjectDir.set(file("${project.projectDir}/.."))
     }
 
